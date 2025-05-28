@@ -40,7 +40,7 @@ def set_background_gif(gif_path):
     """, unsafe_allow_html=True)
 
 
-set_background_gif("fondo_formulario_mar.gif")
+set_background_gif("beautiful-photo-sea-waves.jpg")
 
 # Configurar correo
 EMAIL = "pablocorporativa@gmail.com"
