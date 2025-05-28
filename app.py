@@ -7,43 +7,50 @@ import smtplib
 from email.message import EmailMessage
 
 # ---------- FONDO Y ESTILOS ----------
-def set_background_image(image_path):
-    with open(image_path, "rb") as f:
-        image_data = f.read()
-    encoded_image = base64.b64encode(image_data).decode()
+def set_background_gif(gif_path):
+    with open(gif_path, "rb") as f:
+        gif_data = f.read()
+    encoded_gif = base64.b64encode(gif_data).decode()
 
     st.markdown(f"""
     <style>
     .stApp {{
-        background-image: url("data:image/jpeg;base64,{encoded_image}");
+        background-image: url("data:image/gif;base64,{encoded_gif}");
         background-size: cover;
         background-attachment: fixed;
+        background-position: center;
         color: white;
     }}
 
-    label, .stSelectbox label, .stSlider label, .stTextInput label {{
-        font-weight: bold;
-        color: white;
+    label, .stSelectbox > div > div > span,
+    .stMultiselect > div > div > span,
+    .stTextInput > label, .stSlider > div > label {{
+        color: white !important;
+        font-weight: bold !important;
+        font-size: 115% !important;
     }}
 
-    .stSelectbox, .stSlider, .stTextInput {{
-        background-color: rgba(0, 0, 0, 0.4) !important;
+    .stTextInput > div > input,
+    .stSelectbox > div,
+    .stMultiselect > div,
+    .stSlider > div {{
+        background-color: rgba(0, 0, 0, 0.25) !important;
+        color: white !important;
         border-radius: 8px;
-        padding: 8px;
     }}
 
-    .stButton button {{
+    .stButton > button {{
         background-color: rgba(255, 255, 255, 0.15);
         color: white;
         font-weight: bold;
-        border-radius: 10px;
-        margin-right: 10px;
+        border-radius: 8px;
+        border: 1px solid white;
     }}
     </style>
     """, unsafe_allow_html=True)
 
 # Usa tu imagen oceánica aquí
-set_background_image("beautiful-photo-sea-waves.jpg")
+set_background_gif("beautiful-photo-sea-waves.jpg")
 
 # ---------- CONFIGURACIÓN ----------
 EMAIL = "pablocorporativa@gmail.com"
