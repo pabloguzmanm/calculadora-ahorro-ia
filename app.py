@@ -9,9 +9,6 @@ import os
 import streamlit as st
 import base64
 
-
-
-
 def set_background_gif(gif_path):
     with open(gif_path, "rb") as f:
         gif_data = f.read()
@@ -23,26 +20,27 @@ def set_background_gif(gif_path):
         background-image: url("data:image/gif;base64,{encoded_gif}");
         background-size: cover;
         background-attachment: fixed;
+        background-position: center;
         color: white;
     }}
-    .stButton button {{
+    label, .stSelectbox > div > div > span {{
+        color: white !important;
+        font-weight: bold !important;
+    }}
+    .stButton > button {{
         background-color: rgba(255, 255, 255, 0.15);
-        border-radius: 10px;
         color: white;
         font-weight: bold;
+        border-radius: 8px;
     }}
-    .stSelectbox, .stMultiselect, .stSlider {{
-        background-color: rgba(0, 0, 0, 0.4) !important;
-    }}
-    .css-1n76uvr, .css-1q8dd3e {{
-        background-color: rgba(0, 0, 0, 0.3) !important;
+    .stSlider > div {{
+        background-color: rgba(255,255,255,0.2);
     }}
     </style>
     """, unsafe_allow_html=True)
 
 
-
-set_background_gif("fondo_calculadora.gif")    
+set_background_gif("fondo_formulario_mar.gif")
 
 # Configurar correo
 EMAIL = "pablocorporativa@gmail.com"
@@ -106,4 +104,3 @@ if tareas and funciones and edad and email_usuario:
             st.success("Correo enviado exitosamente.")
         except Exception as e:
             st.error(f"Error al enviar el correo: {e}")
-
