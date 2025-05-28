@@ -43,7 +43,7 @@ def set_background_image(image_path):
     """, unsafe_allow_html=True)
 
 # Usa tu imagen oceánica aquí
-set_background_image("WhatsApp Image 2025-05-28 at 12.46.11.jpeg")
+set_background_image("beautiful-photo-sea-waves.jpg")
 
 # ---------- CONFIGURACIÓN ----------
 EMAIL = "pablocorporativa@gmail.com"
