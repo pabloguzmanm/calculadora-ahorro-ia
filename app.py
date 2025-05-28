@@ -6,10 +6,47 @@ from fpdf import FPDF
 import smtplib
 from email.message import EmailMessage
 import os
+import streamlit as st
+import base64
+
+
+
+
+def set_background_gif(gif_path):
+    with open(gif_path, "rb") as f:
+        gif_data = f.read()
+    encoded_gif = base64.b64encode(gif_data).decode()
+
+    st.markdown(f"""
+    <style>
+    .stApp {{
+        background-image: url("data:image/gif;base64,{encoded_gif}");
+        background-size: cover;
+        background-attachment: fixed;
+        color: white;
+    }}
+    .stButton button {{
+        background-color: rgba(255, 255, 255, 0.15);
+        border-radius: 10px;
+        color: white;
+        font-weight: bold;
+    }}
+    .stSelectbox, .stMultiselect, .stSlider {{
+        background-color: rgba(0, 0, 0, 0.4) !important;
+    }}
+    .css-1n76uvr, .css-1q8dd3e {{
+        background-color: rgba(0, 0, 0, 0.3) !important;
+    }}
+    </style>
+    """, unsafe_allow_html=True)
+
+
+
+set_background_gif("fondo_calculadora.gif")    
 
 # Configurar correo
-EMAIL = "pablo@dubist.io"
-PASSWORD = "@5zdY$0M7ntV"  # Usar contraseña de aplicación si usas Gmail
+EMAIL = "pablocorporativa@gmail.com"
+PASSWORD = "F@ntomas21"  # Usar contraseña de aplicación si usas Gmail
 
 # Cargar datos
 df = pd.read_excel("Matriz_Tareas_Empresa_Ventas_IA.xlsx")
@@ -69,3 +106,4 @@ if tareas and funciones and edad and email_usuario:
             st.success("Correo enviado exitosamente.")
         except Exception as e:
             st.error(f"Error al enviar el correo: {e}")
+
