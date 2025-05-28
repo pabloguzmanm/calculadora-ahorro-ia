@@ -1,20 +1,63 @@
+
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 from fpdf import FPDF
 import smtplib
 from email.message import EmailMessage
-import os
+import base64
 
-# Configurar correo
-EMAIL = "eduardo@angiotek.cl"
-PASSWORD = "Ironmik3!"  # Usar contraseña de aplicación si usas Gmail
+# ---------- ESTILO VISUAL Y FONDO ----------
+def set_background_image(image_path):
+    with open(image_path, "rb") as f:
+        image_data = f.read()
+    encoded_image = base64.b64encode(image_data).decode()
+    st.markdown(f'''
+    <style>
+    .stApp {{
+        background-image: url("data:image/jpeg;base64,{encoded_image}");
+        background-size: cover;
+        background-attachment: fixed;
+        background-position: center;
+        color: white;
+    }}
+    label, .stSelectbox label, .stMultiselect label, .stSlider label, .stTextInput label {{
+        font-weight: bold !important;
+        font-size: 130% !important;
+        color: white !important;
+    }}
+    .stTextInput > div > input,
+    .stNumberInput input,
+    .stSelectbox > div,
+    .stMultiselect > div,
+    .stSlider > div {{
+        background-color: rgba(0, 0, 0, 0.15) !important;
+        color: white !important;
+        border-radius: 8px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        padding: 6px;
+    }}
+    .stButton > button {{
+        background-color: rgba(255, 255, 255, 0.15);
+        color: white;
+        font-weight: bold;
+        border-radius: 8px;
+        border: 1px solid white;
+    }}
+    </style>
+    ''', unsafe_allow_html=True)
+
+# Asume que tienes una imagen llamada 'fondo_moderno.jpg' en el mismo directorio
+set_background_image("fondo_moderno.jpg")
+
+# ---------- CONFIGURACIÓN DE CORREO ----------
 EMAIL = "pablo@dubist.io"
-PASSWORD = "@5zdY$0M7ntV"  # Usar contraseña de aplicación si usas Gmail
+PASSWORD = "@5zdY$0M7ntV"  # Usa contraseña de aplicación
 
-# Cargar datos
+# ---------- CARGA DE DATOS ----------
 df = pd.read_excel("Matriz_Tareas_Empresa_Ventas_IA.xlsx")
 
+# ---------- INTERFAZ DE USUARIO ----------
 st.title("Calculadora de Ahorro con IA")
 
 edad = st.selectbox("¿Cuál es tu rango de edad?", ["18-25", "26-35", "36-45", "46-60", "60+"])
@@ -24,6 +67,7 @@ frecuencia = st.slider("Frecuencia mensual de cada tarea:", 1, 60, 4)
 costo_hora = st.number_input("Costo promedio por hora:", 0, 100000, 10000, step=1000)
 email_usuario = st.text_input("Tu correo electrónico para recibir el resultado:")
 
+# ---------- CÁLCULOS Y RESULTADOS ----------
 if tareas and funciones and edad and email_usuario:
     df_sel = df[df["Tarea"].isin(tareas)].copy()
     df_sel["Total sin IA (hrs/mes)"] = (df_sel["Tiempo estimado sin IA (min/vez)"] * frecuencia) / 60
@@ -51,7 +95,6 @@ if tareas and funciones and edad and email_usuario:
     pdf.output(pdf_file_path)
 
     if st.button("Enviar resumen por correo a ti y a eduardo@dubist.io"):
-
         try:
             msg = EmailMessage()
             msg['Subject'] = "Resumen de Ahorro con IA"
