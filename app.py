@@ -48,7 +48,7 @@ def set_background_image(image_path):
     ''', unsafe_allow_html=True)
 
 # Asume que tienes una imagen llamada 'fondo_moderno.jpg' en el mismo directorio
-set_background_image("fondo_moderno.jpg")
+set_background_image("beautiful-photo-sea-waves.jpg")
 
 # ---------- CONFIGURACIÓN DE CORREO ----------
 EMAIL = "pablo@dubist.io"
