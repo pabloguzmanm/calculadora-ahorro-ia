@@ -8,8 +8,8 @@ from email.message import EmailMessage
 import os
 
 # Configurar correo
-EMAIL = "pablocorporativa@gmail.com"
-PASSWORD = "F@ntomas21"  # Usar contraseña de aplicación si usas Gmail
+EMAIL = "eduardo@angiotek.cl"
+PASSWORD = "Ironmik3!"  # Usar contraseña de aplicación si usas Gmail
 
 # Cargar datos
 df = pd.read_excel("Matriz_Tareas_Empresa_Ventas_IA.xlsx")
