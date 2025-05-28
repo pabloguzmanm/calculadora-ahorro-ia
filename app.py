@@ -47,7 +47,7 @@ set_background_image("beautiful-photo-sea-waves.jpg")
 
 # ---------- CONFIGURACIÓN ----------
 EMAIL = "pablocorporativa@gmail.com"
-PASSWORD = "F@ntomas21"  # Usa una contraseña de aplicación de Gmail
+PASSWORD = "gcvk yvpk bqjb ktxy"  # Usa una contraseña de aplicación de Gmail
 
 # ---------- CARGA DE DATOS ----------
 df = pd.read_excel("Matriz_Tareas_Empresa_Ventas_IA.xlsx")
